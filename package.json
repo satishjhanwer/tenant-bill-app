@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "generate-icon": "node scripts/generate-icon.js",
-    "clean": "if exist dist rmdir /s /q dist & if exist dist-electron rmdir /s /q dist-electron",
+    "clean": "node scripts/clean.js",
     "build": "npm run clean && npm run generate-icon && vite build && electron-builder",
     "build:vite": "vite build",
     "preview": "vite preview",
@@ -42,7 +42,8 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "include": "build/installer.nsh"
+      "include": "build/installer.nsh",
+      "compressionLevel": 5
     },
     "linux": {
       "target": [
