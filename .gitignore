@@ -1,0 +1,8 @@
+dist
+dist-electron
+
+data
+node_modules
+
+.yarn
+.history

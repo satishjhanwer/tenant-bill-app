@@ -1,0 +1,38 @@
+TENANT BILL — END USER LICENSE AGREEMENT
+
+Please read this agreement carefully before installing or using Tenant Bill.
+
+1. ACCEPTANCE
+   By clicking "I Agree" and installing this software, you agree to the terms
+   of this agreement. If you do not agree, do not install or use the software.
+
+2. LICENSE GRANT
+   This software is licensed for personal and internal business use only.
+   You may install and use it on computers you own or control.
+
+3. DATA AND PRIVACY
+   Tenant Bill stores all bill data and configuration locally on your device
+   in a folder you choose during setup. No data is transmitted to any server
+   or third party. You are solely responsible for the security and backup
+   of your stored data.
+
+4. RESTRICTIONS
+   You may not redistribute, sell, sublicense, or reverse-engineer this
+   software or any part of it.
+
+5. DISCLAIMER OF WARRANTIES
+   This software is provided "as is" without warranty of any kind. The authors
+   make no guarantees regarding accuracy of bill calculations. You are
+   responsible for verifying all generated bills before use.
+
+6. LIMITATION OF LIABILITY
+   In no event shall the authors be liable for any financial loss, data loss,
+   or other damages arising from the use of this software.
+
+7. DATA ON UNINSTALL
+   When uninstalling, you will be asked whether to keep or delete your app
+   settings. Bill data stored in your chosen folder is always preserved and
+   is never affected by uninstallation.
+
+By proceeding with the installation you confirm that you have read,
+understood, and agree to be bound by the terms above.
