@@ -10,7 +10,8 @@
     "clean": "if exist dist rmdir /s /q dist & if exist dist-electron rmdir /s /q dist-electron",
     "build": "npm run clean && npm run generate-icon && vite build && electron-builder",
     "build:vite": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "node node_modules/electron/install.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -44,7 +45,10 @@
       "include": "build/installer.nsh"
     },
     "linux": {
-      "target": ["AppImage", "deb"],
+      "target": [
+        "AppImage",
+        "deb"
+      ],
       "icon": "public/icon.png"
     },
     "files": [
