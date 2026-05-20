@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const dirs = ['dist', 'dist-electron'];
 
@@ -10,3 +10,4 @@ dirs.forEach(dir => {
     console.log(`Removed ${dir}`);
   }
 });
+
