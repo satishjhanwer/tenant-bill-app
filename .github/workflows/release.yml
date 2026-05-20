@@ -31,6 +31,8 @@ jobs:
 
       - name: Build app
         run: yarn build
+        env:
+          MAINTAINER_EMAIL: ${{ github.event.pusher.email }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

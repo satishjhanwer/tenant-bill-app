@@ -8,7 +8,7 @@
     "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "generate-icon": "node scripts/generate-icon.js",
     "clean": "node scripts/clean.js",
-    "build": "npm run clean && npm run generate-icon && vite build && electron-builder",
+    "build": "npm run clean && npm run generate-icon && vite build && electron-builder --publish never",
     "build:vite": "vite build",
     "preview": "vite preview",
     "postinstall": "node node_modules/electron/install.js"
@@ -49,7 +49,8 @@
         "AppImage",
         "deb"
       ],
-      "icon": "public/icon.png"
+      "icon": "public/icon.png",
+      "maintainer": "${env.MAINTAINER_EMAIL}"
     },
     "files": [
       "dist/**/*",
