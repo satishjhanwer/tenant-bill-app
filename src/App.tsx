@@ -100,6 +100,28 @@ export default function App() {
     setScreen('print');
   };
 
+  const handleDeleteBill = async () => {
+    const mostRecentBill = storedData.bills[0];
+    if (!mostRecentBill) return;
+
+    const updated: StoredData = {
+      config: {
+        ...storedData.config,
+        tenant1LastReading: mostRecentBill.tenant1.lastReading,
+        tenant2LastReading: mostRecentBill.tenant2.lastReading,
+      },
+      bills: storedData.bills.slice(1),
+    };
+
+    await saveData(storagePath, updated);
+    setStoredData(updated);
+
+    if (currentBill?.month === mostRecentBill.month) {
+      setCurrentBill(null);
+      setScreen('form');
+    }
+  };
+
   const handleChangeFolder = async () => {
     const folder = await pickFolder();
     if (folder) {
@@ -161,7 +183,7 @@ export default function App() {
         )}
         {screen === 'print' && currentBill && <PrintView bill={currentBill} />}
         {screen === 'history' && (
-          <HistoryView bills={storedData.bills} onView={handleViewBill} />
+          <HistoryView bills={storedData.bills} onView={handleViewBill} onDelete={handleDeleteBill} />
         )}
       </main>
 
