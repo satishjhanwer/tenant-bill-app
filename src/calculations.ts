@@ -9,7 +9,6 @@ export function calculateBills(
   tenant1LastReading: number,
   tenant2LastReading: number,
   waterRatioTenant2: number,
-  tankerRate: number,
   tenant1Name: string,
   tenant2Name: string,
   tenant3Name: string,
@@ -22,7 +21,12 @@ export function calculateBills(
   const t1WaterMotorShare = round2(0.5 * t1.waterMotorUnits * months);
   const t1WaterMotorAmount = round2(t1WaterMotorShare * t1.perUnitRate);
   const t1MunicipalShare = round2((t1.municipalWaterBill * months) / 2);
-  const t1TankerShare = round2((tankerRate * t1.tankerCount) / 2);
+  const t1TankerTotal = round2(t1.tankerRate1 * t1.tankerCount1 + t1.tankerRate2 * t1.tankerCount2);
+  const t1TankerShare = round2(t1TankerTotal / 2);
+  const t1TankerBatches = [
+    ...(t1.tankerCount1 > 0 ? [{ count: t1.tankerCount1, rate: t1.tankerRate1 }] : []),
+    ...(t1.tankerCount2 > 0 ? [{ count: t1.tankerCount2, rate: t1.tankerRate2 }] : []),
+  ];
   const t1ExtraCash = round2(-(t1.extraCash * months));
   const t1Total = round2(
     t1Electricity + t1WaterMotorAmount + t1MunicipalShare +
@@ -41,8 +45,7 @@ export function calculateBills(
     waterMotorAmount: t1WaterMotorAmount,
     municipalWaterBill: t1.municipalWaterBill * months,
     municipalWaterShare: t1MunicipalShare,
-    tankerCount: t1.tankerCount,
-    tankerRate,
+    tankerBatches: t1TankerBatches,
     tankerShare: t1TankerShare,
     extraCash: t1.extraCash * months,
     previousDues: t1.previousDues,

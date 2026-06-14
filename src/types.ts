@@ -8,7 +8,10 @@ export interface MonthlyInputs {
     perUnitRate: number;
     waterMotorUnits: number;
     municipalWaterBill: number;
-    tankerCount: number;
+    tankerCount1: number;
+    tankerRate1: number;
+    tankerCount2: number;
+    tankerRate2: number;
     extraCash: number;
     previousDues: number;
   };
@@ -51,9 +54,11 @@ export interface Tenant1Bill {
   waterMotorAmount: number;
   municipalWaterBill: number;
   municipalWaterShare: number;
-  tankerCount: number;
-  tankerRate: number;
+  tankerBatches: { count: number; rate: number }[];
   tankerShare: number;
+  // kept for reading old stored bills
+  tankerCount?: number;
+  tankerRate?: number;
   extraCash: number;
   previousDues: number;
   total: number;

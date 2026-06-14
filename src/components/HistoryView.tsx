@@ -30,21 +30,23 @@ export function HistoryView({ bills, onView, onDelete }: HistoryProps) {
               <div className="history-amount">
                 {bill.tenant3.name}: <span>₹{fmt(bill.tenant3.total)}</span>
               </div>
-              <button className="btn btn-secondary btn-sm" onClick={() => onView(bill)}>
-                View
-              </button>
-              {index === 0 && (
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => {
-                    if (window.confirm(`Delete bill for ${bill.month}? This will restore meter readings to before this bill was generated.`)) {
-                      onDelete();
-                    }
-                  }}
-                >
-                  Delete
+              <div className="history-actions">
+                <button className="btn btn-secondary btn-sm" onClick={() => onView(bill)}>
+                  View
                 </button>
-              )}
+                {index === 0 && (
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => {
+                      if (window.confirm(`Delete bill for ${bill.month}? This will restore meter readings to before this bill was generated.`)) {
+                        onDelete();
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>

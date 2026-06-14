@@ -64,7 +64,6 @@ export default function App() {
       config.tenant1LastReading,
       config.tenant2LastReading,
       config.waterRatioTenant2,
-      config.tankerRate,
       config.tenant1Name,
       config.tenant2Name,
       config.tenant3Name,

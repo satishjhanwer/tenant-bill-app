@@ -1,4 +1,4 @@
-# Tenant Bill App — Project Context
+# Tenant Bill App - Project Context
 
 This file contains the full business context, calculation rules, and design decisions
 for the Tenant Bill App. Read this before making any changes.
@@ -20,7 +20,7 @@ The app is an Electron desktop app running on Windows 11, used by a non-technica
 
 Tenant names are stored in `src/config/tenants.ts` as a single source of truth.
 All UI labels, bill headers, and settings labels read from this file.
-To rename a tenant, update only this file — nothing else needs to change.
+To rename a tenant, update only this file - nothing else needs to change.
 
 ```ts
 export const TENANTS = {
@@ -36,12 +36,12 @@ export const TENANTS = {
 
 ### Property 1
 
-- **Tenant 1** — sole tenant, dedicated electricity meter
+- **Tenant 1** - sole tenant, dedicated electricity meter
 
 ### Property 2
 
-- **Tenant 2** — has a sub-meter for electricity
-- **Tenant 3** — shares the main meter with Tenant 2, no sub-meter
+- **Tenant 2** - has a sub-meter for electricity
+- **Tenant 3** - shares the main meter with Tenant 2, no sub-meter
 
 ---
 

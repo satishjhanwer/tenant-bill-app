@@ -38,7 +38,7 @@ A desktop app to generate monthly utility bills for tenants. Built with Electron
 
 - App opens and asks to choose a folder for saving data
 - Select the OneDrive folder (e.g. `C:\Users\Name\OneDrive\TenantBills`)
-- Click "Get Started" — done, never asked again
+- Click "Get Started" - done, never asked again
 
 ---
 
@@ -47,7 +47,7 @@ A desktop app to generate monthly utility bills for tenants. Built with Electron
 1. Open Tenant Bill app
 2. Enter meter readings, rates, water bills, and any cash adjustments
 3. Click "Generate Bill"
-4. Click "Print Bill" — browser print dialog opens
+4. Click "Print Bill" - browser print dialog opens
 5. Print to paper, cut into 3, distribute
 
 ---
@@ -64,4 +64,4 @@ A desktop app to generate monthly utility bills for tenants. Built with Electron
 ## Data
 
 All data is saved to `bills.json` in your chosen folder.
-OneDrive auto-syncs this file — automatic backup.
+OneDrive auto-syncs this file - automatic backup.

@@ -26,7 +26,11 @@ export function BillForm({ storedData, onGenerate }: Props) {
   const [mPerUnit, setMPerUnit] = useState('');
   const [mWaterUnits, setMWaterUnits] = useState('');
   const [mMunicipalWater, setMMunicipalWater] = useState('');
-  const [mTankerCount, setMTankerCount] = useState('0');
+  const [mTankerCount1, setMTankerCount1] = useState('0');
+  const [mTankerRate1, setMTankerRate1] = useState(String(config.tankerRate));
+  const [mTankerCount2, setMTankerCount2] = useState('0');
+  const [mTankerRate2, setMTankerRate2] = useState(String(config.tankerRate));
+  const [showTankerBatch2, setShowTankerBatch2] = useState(false);
   const [mExtraCash, setMExtraCash] = useState('0');
   const [mPrevDues, setMPrevDues] = useState('0');
 
@@ -54,7 +58,10 @@ export function BillForm({ storedData, onGenerate }: Props) {
         perUnitRate: n(mPerUnit),
         waterMotorUnits: n(mWaterUnits),
         municipalWaterBill: n(mMunicipalWater),
-        tankerCount: n(mTankerCount),
+        tankerCount1: n(mTankerCount1),
+        tankerRate1: n(mTankerRate1),
+        tankerCount2: showTankerBatch2 ? n(mTankerCount2) : 0,
+        tankerRate2: showTankerBatch2 ? n(mTankerRate2) : 0,
         extraCash: n(mExtraCash),
         previousDues: n(mPrevDues),
       },
@@ -153,9 +160,33 @@ export function BillForm({ storedData, onGenerate }: Props) {
               <input type="number" value={mMunicipalWater} onChange={e => setMMunicipalWater(e.target.value)} placeholder="e.g. 160" />
             </div>
             <div className="field">
-              <label>Water Tankers (count)</label>
-              <input type="number" value={mTankerCount} onChange={e => setMTankerCount(e.target.value)} placeholder="0" />
-              <span className="hint">Rate: ₹{config.tankerRate}/tanker, tenant share: ₹{(n(mTankerCount) * config.tankerRate / 2).toFixed(2)}</span>
+              <label>Water Tankers</label>
+              <div className="tanker-batch-row">
+                <input type="number" value={mTankerCount1} onChange={e => setMTankerCount1(e.target.value)} placeholder="0" style={{ width: '70px' }} />
+                <span className="tanker-batch-sep">x</span>
+                <input type="number" value={mTankerRate1} onChange={e => setMTankerRate1(e.target.value)} placeholder="350" style={{ width: '80px' }} />
+                <span className="tanker-batch-sep">₹/tanker</span>
+              </div>
+              {showTankerBatch2 ? (
+                <div className="tanker-batch-row">
+                  <input type="number" value={mTankerCount2} onChange={e => setMTankerCount2(e.target.value)} placeholder="0" style={{ width: '70px' }} />
+                  <span className="tanker-batch-sep">x</span>
+                  <input type="number" value={mTankerRate2} onChange={e => setMTankerRate2(e.target.value)} placeholder="350" style={{ width: '80px' }} />
+                  <span className="tanker-batch-sep">₹/tanker</span>
+                  <button
+                    type="button"
+                    className="tanker-batch-remove"
+                    onClick={() => { setShowTankerBatch2(false); setMTankerCount2('0'); }}
+                  >x</button>
+                </div>
+              ) : (
+                <button type="button" className="tanker-add-batch" onClick={() => setShowTankerBatch2(true)}>
+                  + Add batch at different rate
+                </button>
+              )}
+              <span className="hint">
+                Your share: ₹{((n(mTankerCount1) * n(mTankerRate1) + (showTankerBatch2 ? n(mTankerCount2) * n(mTankerRate2) : 0)) / 2).toFixed(2)}
+              </span>
             </div>
             <hr className="divider" />
             <div className="field">

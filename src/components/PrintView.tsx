@@ -60,13 +60,22 @@ function Tenant1BillBlock({ bill, month, billDate }: {
           <tr><td>Municipal Water Bill</td><td>₹{fmt(bill.municipalWaterBill)}</td></tr>
           <tr><td>Your Share</td><td>₹{fmt(bill.municipalWaterShare)}</td></tr>
 
-          {bill.tankerCount > 0 && (
-            <>
-              <tr className="bill-section-header"><td colSpan={2}>Water Tanker</td></tr>
-              <tr><td>Tankers × ₹{bill.tankerRate}</td><td>{bill.tankerCount} × ₹{bill.tankerRate}</td></tr>
-              <tr><td>Your Share</td><td>₹{fmt(bill.tankerShare)}</td></tr>
-            </>
-          )}
+          {(() => {
+            const batches = bill.tankerBatches ?? (
+              bill.tankerCount && bill.tankerCount > 0
+                ? [{ count: bill.tankerCount, rate: bill.tankerRate ?? 0 }]
+                : []
+            );
+            return batches.length > 0 ? (
+              <>
+                <tr className="bill-section-header"><td colSpan={2}>Water Tanker</td></tr>
+                {batches.map((b, i) => (
+                  <tr key={i}><td>Batch {batches.length > 1 ? i + 1 : ''} ({b.count} x ₹{b.rate})</td><td>₹{fmt(b.count * b.rate)}</td></tr>
+                ))}
+                <tr><td>Your Share</td><td>₹{fmt(bill.tankerShare)}</td></tr>
+              </>
+            ) : null;
+          })()}
 
           {(bill.extraCash > 0 || bill.previousDues > 0) && (
             <tr className="bill-section-header"><td colSpan={2}>Adjustments</td></tr>
@@ -131,10 +140,11 @@ function Tenant2BillBlock({ bill, month, billDate }: {
   );
 }
 
-function Tenant3BillBlock({ bill, month, billDate }: {
+function Tenant3BillBlock({ bill, month, billDate, tenant2Name }: {
   bill: Tenant3Bill;
   month: string;
   billDate: string;
+  tenant2Name: string;
 }) {
   return (
     <div className="bill-block">
@@ -144,7 +154,7 @@ function Tenant3BillBlock({ bill, month, billDate }: {
         <tbody>
           <tr className="bill-section-header"><td colSpan={2}>Electricity</td></tr>
           <tr><td>Total Meter Bill</td><td>₹{fmt(bill.mainMeterBill)}</td></tr>
-          <tr><td>Tenant 2 Share</td><td className="bill-negative">-₹{fmt(bill.tenant2GrossShare)}</td></tr>
+          <tr><td>{tenant2Name} Share</td><td className="bill-negative">-₹{fmt(bill.tenant2GrossShare)}</td></tr>
           <tr><td>Your Electricity</td><td>₹{fmt(bill.electricity)}</td></tr>
 
           <tr className="bill-section-header"><td colSpan={2}>Water</td></tr>
@@ -179,7 +189,7 @@ export function PrintView({ bill }: Props) {
   return (
     <div className="print-screen">
       <div className="print-header">
-        <h1>Bill — {bill.month}</h1>
+        <h1>Bill - {bill.month}</h1>
         <div className="print-actions">
           <button className="btn btn-primary" onClick={handlePrint}>
             Print Bill
@@ -190,7 +200,7 @@ export function PrintView({ bill }: Props) {
       <div className="bills-container">
         <Tenant1BillBlock bill={bill.tenant1} month={bill.month} billDate={bill.billDate} />
         <Tenant2BillBlock bill={bill.tenant2} month={bill.month} billDate={bill.billDate} />
-        <Tenant3BillBlock bill={bill.tenant3} month={bill.month} billDate={bill.billDate} />
+        <Tenant3BillBlock bill={bill.tenant3} month={bill.month} billDate={bill.billDate} tenant2Name={bill.tenant2.name} />
       </div>
     </div>
   );

@@ -414,6 +414,50 @@ body {
   color: var(--accent);
 }
 
+.tanker-batch-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.tanker-batch-sep {
+  color: var(--text-dim);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.tanker-batch-remove {
+  background: none;
+  border: none;
+  color: var(--text-dimmer);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.tanker-batch-remove:hover {
+  color: #e05c5c;
+}
+
+.tanker-add-batch {
+  background: none;
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 11px;
+  padding: 4px 10px;
+  margin-bottom: 4px;
+}
+
+.tanker-add-batch:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+}
+
 .print-screen {
   padding: 28px 32px;
 }
@@ -573,6 +617,12 @@ body {
 
 .history-item:hover {
   border-color: var(--border2);
+}
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
 }
 
 .history-month {

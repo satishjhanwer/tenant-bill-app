@@ -80,7 +80,7 @@ export function SettingsModal({ config, storagePath, onSave, onClose, onChangeFo
 
         <div className="settings-section settings-grid-2">
           <div className="field">
-            <label>{t2Name} — Water Ratio</label>
+            <label>{t2Name} - Water Ratio</label>
             <input
               type="number"
               step="0.001"
@@ -105,7 +105,7 @@ export function SettingsModal({ config, storagePath, onSave, onClose, onChangeFo
 
         <div className="settings-section settings-grid-2">
           <div className="field">
-            <label>{t1Name} — Last Meter Reading</label>
+            <label>{t1Name} - Last Meter Reading</label>
             <input
               type="number"
               value={t1Reading}
@@ -114,7 +114,7 @@ export function SettingsModal({ config, storagePath, onSave, onClose, onChangeFo
             <span className="hint">Auto-updated after each bill</span>
           </div>
           <div className="field">
-            <label>{t2Name} — Last Sub-Meter Reading</label>
+            <label>{t2Name} - Last Sub-Meter Reading</label>
             <input
               type="number"
               value={t2Reading}
