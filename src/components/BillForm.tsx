@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { MonthlyInputs, StoredData } from '../types';
 
 interface Props {
@@ -45,6 +45,11 @@ export function BillForm({ storedData, onGenerate }: Props) {
   const [mjMunicipalWater, setMjMunicipalWater] = useState('');
   const [mjExtraCash, setMjExtraCash] = useState('0');
   const [mjPrevDues, setMjPrevDues] = useState('0');
+
+  useEffect(() => {
+    setMTankerRate1(String(config.tankerRate));
+    setMTankerRate2(String(config.tankerRate));
+  }, [config.tankerRate]);
 
   const n = (v: string) => parseFloat(v) || 0;
 
@@ -115,7 +120,7 @@ export function BillForm({ storedData, onGenerate }: Props) {
             onChange={e => setMonths(e.target.value)}
             placeholder="1"
           />
-          {n(months) > 1 && <span className="hint">Water motor, municipal water & extra cash ×{n(months)}</span>}
+          {n(months) > 1 && <span className="hint">Water motor, municipal water & extra cash x{n(months)}</span>}
         </div>
       </div>
 

@@ -236,9 +236,14 @@ body {
   border-color: #6b2a2a;
 }
 
-.btn-danger:hover {
+.btn-danger:hover:not(:disabled) {
   background: #3a1a1a;
   border-color: #e05c5c;
+}
+
+.btn-danger:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .btn-ghost {
@@ -586,7 +591,7 @@ body {
 
 .history-screen {
   padding: 28px 32px;
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -629,11 +634,14 @@ body {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: 130px;
 }
 
 .history-amount {
   font-size: 12px;
   color: var(--text-dim);
+  white-space: nowrap;
 }
 
 .history-amount span {
