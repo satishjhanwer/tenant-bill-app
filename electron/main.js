@@ -68,7 +68,19 @@ ipcMain.handle('write-json', async (_, filePath, data) => {
 });
 
 ipcMain.handle('print', async () => {
-  mainWindow.webContents.print({ silent: false, printBackground: true });
+  try {
+    const pdfData = await mainWindow.webContents.printToPDF({
+      landscape: true,
+      printBackground: false,
+      pageSize: 'A4',
+      marginsType: 0,
+    });
+    const tempPath = path.join(app.getPath('temp'), 'tenant-bill.pdf');
+    fs.writeFileSync(tempPath, pdfData);
+    await shell.openPath(tempPath);
+  } catch (e) {
+    console.error('PDF generation error:', e);
+  }
 });
 
 const configPath = path.join(app.getPath('userData'), 'config.json');

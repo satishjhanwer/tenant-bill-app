@@ -48,12 +48,12 @@ function Tenant1BillBlock({ bill, month, billDate }: {
           <tr><td>Current Reading</td><td>{bill.currentReading}</td></tr>
           <tr><td>Last Reading</td><td>{bill.lastReading}</td></tr>
           <tr><td>Total Units</td><td>{bill.units}</td></tr>
-          <tr><td>Per Unit Rate</td><td>₹{bill.perUnitRate}</td></tr>
+          <tr><td>Per Unit Rate</td><td>₹{bill.perUnitRate.toFixed(2)}</td></tr>
           <tr><td>Electricity Charges</td><td>₹{fmt(bill.electricity)}</td></tr>
 
           <tr className="bill-section-header"><td colSpan={2}>Water Motor</td></tr>
           <tr><td>Total Units</td><td>{bill.waterMotorUnits}</td></tr>
-          <tr><td>Your Share</td><td>{bill.waterMotorShare} units</td></tr>
+          <tr><td>Your Share</td><td>{bill.waterMotorShare.toFixed(2)} units</td></tr>
           <tr><td>Water Motor Charges</td><td>₹{fmt(bill.waterMotorAmount)}</td></tr>
 
           <tr className="bill-section-header"><td colSpan={2}>Water</td></tr>
@@ -110,12 +110,12 @@ function Tenant2BillBlock({ bill, month, billDate }: {
           <tr><td>Current Reading</td><td>{bill.currentReading}</td></tr>
           <tr><td>Last Reading</td><td>{bill.lastReading}</td></tr>
           <tr><td>Total Units</td><td>{bill.units}</td></tr>
-          <tr><td>Per Unit Rate</td><td>₹{bill.perUnitRate}</td></tr>
+          <tr><td>Per Unit Rate</td><td>₹{bill.perUnitRate.toFixed(2)}</td></tr>
           <tr><td>Electricity Charges</td><td>₹{fmt(bill.electricity)}</td></tr>
 
           <tr className="bill-section-header"><td colSpan={2}>Water Motor</td></tr>
           <tr><td>Total Units</td><td>{bill.waterMotorUnits}</td></tr>
-          <tr><td>Your Share</td><td>{bill.waterMotorShare.toFixed(3)} units</td></tr>
+          <tr><td>Your Share</td><td>{bill.waterMotorShare.toFixed(2)} units</td></tr>
           <tr><td>Water Motor Charges</td><td>₹{fmt(bill.waterMotorAmount)}</td></tr>
 
           <tr className="bill-section-header"><td colSpan={2}>Water</td></tr>
